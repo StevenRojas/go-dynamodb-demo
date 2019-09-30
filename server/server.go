@@ -29,5 +29,11 @@ func NewHttpServer(ctx context.Context, endpoints Endpoints) http.Handler {
 		encodeResponse,
 	))
 
+	r.Methods("GET").Path("/theme/{tableName}").Handler(httptransport.NewServer(
+		endpoints.ListThemeEndpoint,
+		decodeListThemeRequest,
+		encodeResponse,
+	))
+
 	return r
 }

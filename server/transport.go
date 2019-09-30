@@ -23,6 +23,10 @@ type addThemeRequest struct {
 	Data         interface{} `json:"data"`
 }
 
+type listThemeRequest struct {
+	TableName string `string:"tableName"`
+}
+
 type schemaResponse struct {
 	Result interface{} `json:"response"`
 }
@@ -54,6 +58,13 @@ func decodeAddThemeRequest(ctx context.Context, r *http.Request) (interface{}, e
 	if err != nil {
 		return nil, err
 	}
+	return req, nil
+}
+
+func decodeListThemeRequest(ctx context.Context, r *http.Request) (interface{}, error) {
+	var req listThemeRequest
+	params := mux.Vars(r)
+	req.TableName = params["tableName"]
 	return req, nil
 }
 

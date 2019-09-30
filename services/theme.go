@@ -14,7 +14,7 @@ type Theme struct {
 	Data        interface{} `json:"data"`
 }
 
-func AddThemeSchema(tableName string, corporateId int, name string, data interface{}) (resp interface{}, err error) {
+func AddTheme(tableName string, corporateId int, name string, data interface{}) (resp interface{}, err error) {
 	client := getClient()
 	theme := Theme{
 		CorporateID: corporateId,
@@ -42,4 +42,21 @@ func AddThemeSchema(tableName string, corporateId int, name string, data interfa
 	fmt.Println(newTheme)
 	return newTheme, nil
 
+}
+
+func ListTheme(tableName string) (resp interface{}, err error) {
+	client := getClient()
+	params := &dynamodb.ScanInput{
+		TableName: aws.String(tableName),
+	}
+	result, err := client.Scan(params)
+	if err != nil {
+		return nil, err
+	}
+	themes := []Theme{}
+	err = dynamodbattribute.UnmarshalListOfMaps(result.Items, &themes)
+	if err != nil {
+		return nil, err
+	}
+	return themes, nil
 }

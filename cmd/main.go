@@ -25,6 +25,7 @@ func main() {
 		SchemaEndpoint:            server.MakeSchemaEndpoint(srv),
 		SchemaDescriptionEndpoint: server.MakeSchemaDescriptionEndpoint(srv),
 		AddThemeEndpoint:          server.MakeAddThemeEndpoint(srv),
+		ListThemeEndpoint:         server.MakeListThemeEndpoint(srv),
 	}
 
 	go func() {

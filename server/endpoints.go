@@ -10,6 +10,7 @@ type Endpoints struct {
 	SchemaEndpoint            endpoint.Endpoint
 	SchemaDescriptionEndpoint endpoint.Endpoint
 	AddThemeEndpoint          endpoint.Endpoint
+	ListThemeEndpoint         endpoint.Endpoint
 }
 
 func MakeSchemaEndpoint(srv Service) endpoint.Endpoint {
@@ -39,7 +40,19 @@ func MakeSchemaDescriptionEndpoint(srv Service) endpoint.Endpoint {
 func MakeAddThemeEndpoint(srv Service) endpoint.Endpoint {
 	return func(ctx context.Context, request interface{}) (interface{}, error) {
 		req := request.(addThemeRequest)
-		s, err := srv.AddThemeSchema(ctx, req)
+		s, err := srv.AddTheme(ctx, req)
+
+		if err != nil {
+			return themeResponse{s}, err
+		}
+		return themeResponse{s}, nil
+	}
+}
+
+func MakeListThemeEndpoint(srv Service) endpoint.Endpoint {
+	return func(ctx context.Context, request interface{}) (interface{}, error) {
+		req := request.(listThemeRequest)
+		s, err := srv.ListTheme(ctx, req)
 
 		if err != nil {
 			return themeResponse{s}, err
