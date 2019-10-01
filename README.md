@@ -10,7 +10,7 @@ $ `go get -u github.com/gorilla/mux`
 For local instance of DynamoDB with Docker (https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/DynamoDBLocal.Docker.html)
 $ docker run -p 8000:8000 amazon/dynamodb-local
 
-Then run Go server (it is using Go Kit)
+Then run Go server (it is using Go Kit with Gorilla Mux)
 $ go run cmd/main.go
 
 Endpoints are at the [Postman collection](dynamo-demo.postman_collection.json)
