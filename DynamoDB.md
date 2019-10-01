@@ -127,3 +127,6 @@ Data type descriptors are **tokens** that tell DynamoDB how to interpret each at
 -   SS – String Set
 -   NS – Number Set
 -   BS – Binary Set
+
+# **Best Practices**
+https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/best-practices.html
