@@ -1,0 +1,189 @@
+{
+	"info": {
+		"_postman_id": "8bade1cf-610b-4652-b8f7-3c266bb9ee3d",
+		"name": "dynamo-demo",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Create schema",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"tableName\": \"Theme\"\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8080/schema",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"schema"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Describe schema",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/schema/:tableName",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"schema",
+						":tableName"
+					],
+					"variable": [
+						{
+							"key": "tableName",
+							"value": "Theme"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Add theme",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"tableName\": \"Theme\",\n  \"partitionKey\": 40,\n  \"sortKey\": \"Theme 1\",\n  \"data\": {\n  \t\"imagery\": {\n      \"item\": [],\n      \"images\": {\n        \"attractScreen\": {\n          \"id\": \"23\",\n          \"url\": \"https://appetize-images-dev.s3.amazonaws.com/kiosk/23_1565023392.jpeg\",\n          \"name\": \"another limonade bla\",\n          \"mediaType\": \"image\"\n        },\n        \"defaultItemImage\": {\n          \"id\": \"10\",\n          \"url\": \"https://appetize-images-dev.s3.amazonaws.com/kiosk/10_1565017161.jpeg\",\n          \"name\": \"hamburger\",\n          \"mediaType\": \"image\"\n        },\n        \"paymentScreenBackground\": {\n          \"id\": 0,\n          \"url\": \"\",\n          \"name\": \"\",\n          \"mediaType\": \"\"\n        },\n        \"orderConfirmationScreenBackground\": {\n          \"id\": 0,\n          \"url\": \"\",\n          \"name\": \"\",\n          \"mediaType\": \"\"\n        }\n      },\n      \"itemImageScaling\": \"resize\"\n    },\n    \"settings\": {\n      \"messageText\": \"\",\n      \"timeoutAfter\": 0\n    },\n    \"mediaType\": \"Image\"\n  }\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8080/theme",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"theme"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get all themes",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/theme/:tableName",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"theme",
+						":tableName"
+					],
+					"variable": [
+						{
+							"key": "tableName",
+							"value": "Theme"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get theme",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/theme/:tableName/corp/:corp/name/:name",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"theme",
+						":tableName",
+						"corp",
+						":corp",
+						"name",
+						":name"
+					],
+					"variable": [
+						{
+							"key": "tableName",
+							"value": "Theme"
+						},
+						{
+							"key": "corp",
+							"value": "40"
+						},
+						{
+							"key": "name",
+							"value": "Theme 1"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Modify theme",
+			"request": {
+				"method": "PATCH",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"tableName\": \"Theme\",\n  \"partitionKey\": 40,\n  \"sortKey\": \"Theme 2\",\n  \"data\": {\n  \t\"settings\": {\n      \"messageText\": \"this is a text\",\n      \"timeoutAfter\": 30\n    }\n  }\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8080/theme",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"theme"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

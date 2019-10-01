@@ -26,6 +26,9 @@ func main() {
 		SchemaDescriptionEndpoint: server.MakeSchemaDescriptionEndpoint(srv),
 		AddThemeEndpoint:          server.MakeAddThemeEndpoint(srv),
 		ListThemeEndpoint:         server.MakeListThemeEndpoint(srv),
+		PatchThemeEndpoint:        server.MakePatchThemeEndpoint(srv),
+		QueryThemeEndpoint:        server.MakeQueryThemeEndpoint(srv),
+		GetThemeEndpoint:          server.MakeGetThemeEndpoint(srv),
 	}
 
 	go func() {
@@ -36,7 +39,7 @@ func main() {
 
 	go func() {
 		log.Println("Server is running on port: ", *address)
-		handler := server.NewHttpServer(ctx, endpoints)
+		handler := server.NewHTTPServer(ctx, endpoints)
 		errChan <- http.ListenAndServe(*address, handler)
 	}()
 

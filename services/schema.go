@@ -7,6 +7,7 @@ import (
 	"github.com/aws/aws-sdk-go/service/dynamodb"
 )
 
+// GetSchema Get a schema description
 func GetSchema(tableName string) (resp interface{}, err error) {
 	client := getClient()
 	request := &dynamodb.DescribeTableInput{
@@ -21,6 +22,7 @@ func GetSchema(tableName string) (resp interface{}, err error) {
 	return result, nil
 }
 
+// CreateSchema Create a new schema
 func CreateSchema(tableName string) (resp interface{}, err error) {
 	client := getClient()
 	schema := getTableSchema(tableName)
